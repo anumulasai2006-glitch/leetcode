@@ -1,0 +1,28 @@
+class Solution {
+    public String mapWordWeights(String[] words, int[] weights) {
+        int n = words.length;
+
+        String ans = "";
+
+        for (int i = 0; i < n; i++) {
+
+            int sum=0;
+            int k = words[i].length();
+
+            char[] ch = new char[k];
+            ch = words[i].toCharArray();
+
+            for (int j = 0; j < words[i].length(); j++) {
+                sum = sum + weights[ch[j] - 97];
+            }
+
+            sum = sum % 26;
+
+            sum = sum + 97;
+
+            ans = ans + (char)('z' - (sum - 97));
+        }
+
+        return ans;
+    }
+}
