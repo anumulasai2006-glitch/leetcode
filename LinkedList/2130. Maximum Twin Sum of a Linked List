@@ -1,0 +1,48 @@
+// Approach 1: Store values in array and use two pointers
+// Time: O(n)
+// Space: O(n)
+
+// Approach 2 (Optimal):
+// Find middle using slow-fast pointers
+// Reverse second half
+// Compute twin sums
+// Time: O(n)
+// Space: O(1)
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+
+class Solution {
+    public int pairSum(ListNode head) {
+        int n=0;
+        ListNode temp=head;
+        while(temp!=null){
+            n++;
+            temp=temp.next;
+        }
+        int i = 0;
+        int ans[]=new int[n];
+        temp=head;
+        while (temp != null) {
+            ans[i++] = temp.val;
+            temp = temp.next;
+        }
+        int ans1=0;
+        int max=0;
+        for(int j=0;j<n;j++){
+            max=ans[j]+ans[n-j-1];
+            ans1=Math.max(max,ans1);
+        }
+        return ans1;
+    }
+}
