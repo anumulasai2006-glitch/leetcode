@@ -1,0 +1,13 @@
+import java.util.*;
+class Solution {
+    public double angleClock(int hour, int minutes) {
+        double hour_degree=hour*30+minutes*0.5;
+        double min_degree=6*minutes;
+        double difference = Math.abs(hour_degree - min_degree);   
+        double difference1=360-difference;
+        if(difference<difference1)
+        return difference;
+        else
+        return difference1;
+    }
+}
