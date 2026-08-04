@@ -1,0 +1,48 @@
+class Solution {
+    public List<Integer> findMissingElements(int[] nums) {
+        Arrays.sort(nums);
+        int n=nums.length;
+        List<Integer> lt = new ArrayList<>();
+        for(int i=0;i<n-1;i++){
+           if(nums[i+1]!=nums[i]++){
+            for(int j=nums[i];j<nums[i+1];j++)
+            lt.add(j);
+           } 
+        }
+        return lt;
+    }
+}
+
+// Better approach
+// Find min and max based on them add the elements in list and return them 
+import java.util.*;
+
+class Solution {
+    public List<Integer> findMissingElements(int[] nums) {
+
+        List<Integer> ans = new ArrayList<>();
+        HashSet<Integer> set = new HashSet<>();
+
+        int min = nums[0];
+        int max = nums[0];
+
+        // Find min, max and store all elements in HashSet
+        for (int num : nums) {
+            set.add(num);
+
+            if (num < min)
+                min = num;
+
+            if (num > max)
+                max = num;
+        }
+
+        // Check every number in the range
+        for (int i = min; i <= max; i++) {
+            if (!set.contains(i))
+                ans.add(i);
+        }
+
+        return ans;
+    }
+}
