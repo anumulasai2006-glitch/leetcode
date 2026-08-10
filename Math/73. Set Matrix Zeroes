@@ -1,0 +1,78 @@
+//Approach 1
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+
+        int n = matrix.length;
+        int m = matrix[0].length;
+
+        boolean[] rows = new boolean[n];
+        boolean[] cols = new boolean[m];
+
+        // Find the ORIGINAL zeroes
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+
+                if (matrix[i][j] == 0) {
+                    rows[i] = true;
+                    cols[j] = true;
+                }
+            }
+        }
+
+        // Set rows and columns to zero
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+
+                if (rows[i] || cols[j]) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+}
+
+// Approach 2
+// Creating a new matrix and changing all the things req and assigning it to back as if we change the old one itself it c encounter the newly created zeros and changes the row and column again as it thinks its original zero.But here its not allowed as copying into new matrix is restricted
+
+// class Solution {
+//     public void setZeroes(int[][] matrix) {
+
+//         int n = matrix.length;
+//         int m = matrix[0].length;
+
+//         int[][] ans = new int[n][m];
+
+//         // First copy the original matrix
+//         for (int i = 0; i < n; i++) {
+//             for (int j = 0; j < m; j++) {
+//                 ans[i][j] = matrix[i][j];
+//             }
+//         }
+
+//         // Use original matrix for checking
+//         // and ans for modifying
+//         for (int i = 0; i < n; i++) {
+//             for (int j = 0; j < m; j++) {
+
+//                 if (matrix[i][j] == 0) {
+
+//                     for (int a = 0; a < n; a++) {
+//                         ans[a][j] = 0;
+//                     }
+
+//                     for (int b = 0; b < m; b++) {
+//                         ans[i][b] = 0;
+//                     }
+//                 }
+//             }
+//         }
+
+//         // Copy result back to original matrix
+//         for (int i = 0; i < n; i++) {
+//             for (int j = 0; j < m; j++) {
+//                 matrix[i][j] = ans[i][j];
+//             }
+//         }
+//     }
+// }
