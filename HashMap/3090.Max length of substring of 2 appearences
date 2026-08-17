@@ -1,0 +1,25 @@
+class Solution {
+    public int maximumLengthSubstring(String s) {
+
+        int n = s.length();
+        char[] ch = s.toCharArray();
+        int left = 0;
+        int max_ans=0;
+
+        HashMap<Character,Integer> map = new HashMap<>();
+
+        for(int right=0;right<n;right++){
+
+            while (map.getOrDefault(ch[right], 0) >= 2) {
+                map.put(ch[left], map.get(ch[left]) - 1);
+                left++;
+            }
+
+            map.put(ch[right], map.getOrDefault(ch[right], 0) + 1);
+
+            max_ans = Math.max(max_ans,right-left+1); 
+        }
+
+        return max_ans;
+    }
+}
