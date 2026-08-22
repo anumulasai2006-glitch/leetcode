@@ -1,0 +1,24 @@
+class Solution {
+    public boolean checkDivisibility(int n) {
+        
+        int num=n;
+        int sum=0;
+        int product=1;
+        int sumf=0;
+        int k=0;
+
+        while(n>0){
+            k=n%10;
+            sum=sum+k;
+            product=product*k;
+            n=n/10;
+        }
+
+        sumf=sum+product;
+        
+        if(num%sumf==0)
+        return true;
+
+        return false;
+    }
+}
