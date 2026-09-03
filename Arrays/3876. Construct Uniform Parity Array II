@@ -1,0 +1,28 @@
+class Solution {
+    public boolean uniformArray(int[] nums1) {
+        
+        int n = nums1.length;
+        int even = 0;
+        int odd = 0;
+        int small = nums1[0];
+
+        if(n == 1)
+            return true;
+
+        for(int i = 0; i < n; i++){
+            if(nums1[i] % 2 == 0){
+                even++;
+            } else {
+                odd++;
+            }
+
+            small = Math.min(small, nums1[i]);
+        }
+
+        // Smallest element is even and there is at least one odd element
+        if(small % 2 == 0 && odd > 0)
+            return false;
+
+        return true;
+    }
+}
