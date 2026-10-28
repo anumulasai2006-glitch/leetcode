@@ -1,0 +1,24 @@
+class Solution {
+    public int largestPerimeter(int[] nums) {
+        int n = nums.length;
+
+        Arrays.sort(nums);
+
+        boolean found = false;  
+        int perimeter = 0;
+
+        for (int i = n - 3; i >= 0; i--) {
+            if (nums[i] + nums[i + 1] > nums[i + 2]) {
+                perimeter = nums[i] + nums[i + 1] + nums[i + 2];
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            return perimeter;
+        } else {
+            return 0;
+        }
+    }
+}
