@@ -1,0 +1,31 @@
+class Solution {
+    public int totalFruit(int[] fruits) {
+        
+        int n = fruits.length;
+        int ans = 0;
+        int left = 0;
+        HashMap<Integer,Integer> mp = new HashMap<>();
+
+        for(int right = 0;right<n;right++){
+            if(!mp.containsKey(fruits[right])){
+                mp.put(fruits[right],1);
+            }
+            else{
+                mp.put(fruits[right],mp.get(fruits[right])+1);
+            }
+            if(mp.size()>2){
+                while(mp.size() > 2){
+                    mp.put(fruits[left], mp.get(fruits[left]) - 1);
+
+                    if(mp.get(fruits[left]) == 0)
+                    mp.remove(fruits[left]);
+                    
+                left++;
+                }
+            }
+            ans = Math.max(ans,right-left+1);
+        }
+        
+        return ans;
+    }
+}
